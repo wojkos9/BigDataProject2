@@ -12,8 +12,10 @@ object LoadData {
     import spark.implicits._
     val sc = spark.sparkContext
 
+    val user = sc.sparkUser
+
     def loadCSV(name: String) : DataFrame = {
-      val loc = s"""/user/hadoop/labs/us-accidents/$name"""
+      val loc = s"""/user/$user/labs/us-accidents/$name"""
       spark.read.option("header", true).option("inferSchema", true).csv(loc)
     }
 
@@ -29,7 +31,7 @@ object LoadData {
       (date, airport, tryDouble(temp), tryDouble(wind), tryDouble(visibility))
     }
 
-    val weatherData = sc.textFile("/user/hadoop/labs/us-accidents/weather.txt").map(parseWeather)
+    val weatherData = sc.textFile(s"/user/$user/labs/us-accidents/weather.txt").map(parseWeather)
     val weather = spark.createDataFrame(weatherData).toDF("Date", "Airport_code", "Temperature", "Wind_speed", "Visibility")
 
     val dateRange = (x: LocalDate, y: LocalDate) => Iterator.iterate(x) { _.plusDays(1) }.takeWhile(_.isBefore(y.plusDays(1))).toList

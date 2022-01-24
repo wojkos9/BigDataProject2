@@ -9,8 +9,10 @@ object LoadData {
       .getOrCreate()
     import spark.implicits._
 
+    val user = spark.sparkContext.sparkUser
+
     def loadCSV(name: String) : DataFrame = {
-      val loc = s"""/user/hadoop/labs/us-accidents/$name"""
+      val loc = s"""/user/$user/labs/us-accidents/$name"""
       spark.read.option("header", true).option("inferSchema", true).csv(loc)
     }
 
