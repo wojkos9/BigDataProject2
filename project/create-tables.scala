@@ -51,3 +51,5 @@ mkDeltaTable("f_accident", """
     Severity LONG,
     Number_of_accidents LONG
 """)
+
+System.exit(0)
