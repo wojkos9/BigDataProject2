@@ -1,5 +1,5 @@
 #!/bin/sh
-out="out"
+out="jar"
 name="${1%/}"
 echo $name
 pushd "$name"
