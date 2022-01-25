@@ -1,0 +1,825 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%md\n### 1. Łączna liczba wypadkow przy widoczności 2 mil lub mniejszej w kolejnych latach z podzialem na stany w kraju USA.\n",
+      "user": "wk",
+      "dateUpdated": "2022-01-24T23:10:32+0100",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h3>1. Łączna liczba wypadkow przy widoczności 2 mil lub mniejszej w kolejnych latach z podzialem na stany w kraju USA.</h3>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1643046165500_1918369734",
+      "id": "paragraph_1643019004567_789707228",
+      "dateCreated": "2022-01-24T18:42:45+0100",
+      "dateStarted": "2022-01-24T23:10:32+0100",
+      "dateFinished": "2022-01-24T23:10:32+0100",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:508"
+    },
+    {
+      "text": "%sql\nSELECT EXTRACT(YEAR FROM accidents.Date) as Year, locations.State as State, COUNT(accidents.number_of_accidents) as Number_of_accidents FROM delta.`/tmp/delta-f_accident` accidents JOIN delta.`/tmp/delta-w_location` locations ON accidents.location_id=locations.id JOIN delta.`/tmp/delta-w_visibility` visibility ON accidents.visibility_id=visibility.visibility_id WHERE locations.Country='US' AND visibility.visibility_max <= 2 GROUP BY YEAR, State ORDER BY Year, State ASC;",
+      "user": "wk",
+      "dateUpdated": "2022-01-24T23:10:32+0100",
+      "progress": 7,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "Year0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0,
+                          "direction": "asc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "State1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "Number_of_accidents2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "Year": "string",
+                      "State": "string",
+                      "Number_of_accidents": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "Year",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "State",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "Year\tState\tNumber_of_accidents\n2016\tAZ\t19\n2016\tCA\t249\n2016\tCO\t6\n2016\tFL\t18\n2016\tGA\t58\n2016\tKS\t1\n2016\tMA\t6\n2016\tMD\t36\n2016\tMI\t9\n2016\tNE\t38\n2016\tNH\t1\n2016\tNJ\t1\n2016\tNV\t13\n2016\tOH\t289\n2016\tPA\t30\n2016\tSC\t1\n2016\tTX\t2\n2016\tVA\t216\n2016\tWA\t50\n2016\tWI\t2\n2017\tAZ\t36\n2017\tCA\t19\n2017\tGA\t37\n2017\tMI\t9\n2017\tTX\t9\n2017\tWA\t3\n2018\tAZ\t4\n2018\tCA\t17\n2018\tGA\t56\n2018\tNV\t3\n2018\tNY\t1\n2018\tTX\t13\n2019\tAZ\t1\n2019\tCA\t12\n2019\tCO\t5\n2019\tCT\t1\n2019\tGA\t16\n2019\tNY\t7\n2019\tWA\t2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2099",
+              "$$hashKey": "object:13162"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2099",
+              "$$hashKey": "object:13163"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2099",
+              "$$hashKey": "object:13164"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2099",
+              "$$hashKey": "object:13165"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2099",
+              "$$hashKey": "object:13166"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2100",
+              "$$hashKey": "object:13167"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2100",
+              "$$hashKey": "object:13168"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2100",
+              "$$hashKey": "object:13169"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2100",
+              "$$hashKey": "object:13170"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2100",
+              "$$hashKey": "object:13171"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1643046165500_393068153",
+      "id": "paragraph_1642975646587_377528394",
+      "dateCreated": "2022-01-24T18:42:45+0100",
+      "dateStarted": "2022-01-24T23:10:32+0100",
+      "dateFinished": "2022-01-24T23:10:36+0100",
+      "status": "FINISHED",
+      "$$hashKey": "object:509"
+    },
+    {
+      "text": "%md\n### 2. Średnia dotliwość wypadków, które wydarzyły się przy temperaturze 32F lub niższej w XXI wieku z podzialem na obszary objęte tym samym kodem ZIP.",
+      "user": "wk",
+      "dateUpdated": "2022-01-24T23:10:36+0100",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h3>2. Średnia dotliwość wypadków, które wydarzyły się przy temperaturze 32F lub niższej w XXI wieku z podzialem na obszary objęte tym samym kodem ZIP.</h3>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1643046165500_1777538750",
+      "id": "paragraph_1643019049478_561887632",
+      "dateCreated": "2022-01-24T18:42:45+0100",
+      "dateStarted": "2022-01-24T23:10:36+0100",
+      "dateFinished": "2022-01-24T23:10:36+0100",
+      "status": "FINISHED",
+      "$$hashKey": "object:510"
+    },
+    {
+      "text": "%sql\nSELECT locations.Zipcode as Zipcode, City||', '||State as Zipcode_location, ROUND(AVG(accidents.severity / accidents.number_of_accidents), 3) as Average_severity FROM delta.`/tmp/delta-f_accident` accidents JOIN delta.`/tmp/delta-w_location` locations ON accidents.location_id=locations.id JOIN delta.`/tmp/delta-w_temperature` temperatures ON accidents.temperature_id=temperatures.temperature_id JOIN delta.`/tmp/delta-w_time` time ON accidents.Date = time.Id WHERE year>2000 AND Temperature_max<=32  GROUP BY Zipcode, Zipcode_location",
+      "user": "wk",
+      "dateUpdated": "2022-01-24T23:10:36+0100",
+      "progress": 59,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "Zipcode0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "Zipcode_location1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "Average_severity2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0,
+                          "direction": "asc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "Zipcode": "string",
+                      "Zipcode_location": "string",
+                      "Average_severity": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "Zipcode\tZipcode_location\tAverage_severity\n48503\tFlint, MI\t2.539\n14624-5129\tRochester, NY\t2.0\n19401-1818\tNorristown, PA\t2.0\n48439-7922\tGrand Blanc, MI\t2.0\n06040\tManchester, CT\t2.596\n10314\tStaten Island, NY\t2.626\n48423-8329\tDavison, MI\t2.0\n07094\tSecaucus, NJ\t2.592\n28262\tCharlotte, NC\t2.087\n20871\tClarksburg, MD\t2.987\n49009\tKalamazoo, MI\t2.682\n14623-4209\tRochester, NY\t2.0\n28217-4116\tCharlotte, NC\t2.0\n17018\tDauphin, PA\t2.0\n30342\tAtlanta, GA\t2.222\n48420-9454\tClio, MI\t2.0\n46123-8924\tAvon, IN\t2.0\n13205-1004\tSyracuse, NY\t2.0\n48457-9703\tMontrose, MI\t2.0\n22407-2136\tFredericksburg, VA\t2.0\n48507-1101\tFlint, MI\t3.0\n28208-7332\tCharlotte, NC\t2.0\n19446-1254\tLansdale, PA\t2.0\n47201-8407\tColumbus, IN\t2.0\n17315-4921\tDover, PA\t2.0\n48504-3568\tFlint, MI\t2.0\n49505-5266\tGrand Rapids, MI\t2.0\n23223-4037\tRichmond, VA\t2.0\n27540-3793\tHolly Springs, NC\t2.0\n10567-7348\tCortlandt Manor, NY\t2.0\n48519-1070\tBurton, MI\t2.0\n48439-9610\tGrand Blanc, MI\t2.0\n11366-1705\tFresh Meadows, NY\t2.0\n12547-5017\tMilton, NY\t2.0\n19454-2506\tNorth Wales, PA\t2.0\n48519-1174\tBurton, MI\t2.0\n49507-2850\tGrand Rapids, MI\t2.0\n01833\tGeorgetown, MA\t2.474\n14614-1034\tRochester, NY\t2.0\n30308\tAtlanta, GA\t2.734\n12791-5036\tYoungsville, NY\t4.0\n48532-3614\tFlint, MI\t2.0\n08865-3270\tPhillipsburg, NJ\t2.0\n14608-1833\tRochester, NY\t2.0\n46256-1811\tIndianapolis, IN\t2.0\n43606-7215\tToledo, OH\t2.0\n48507-3674\tFlint, MI\t2.0\n43065-9752\tPowell, OH\t2.0\n43015-3216\tDelaware, OH\t2.0\n48503-2773\tFlint, MI\t2.0\n44109-2607\tCleveland, OH\t2.0\n19468-1105\tRoyersford, PA\t2.0\n27284\tKernersville, NC\t2.8\n08009-9202\tBerlin, NJ\t2.0\n46218-2446\tIndianapolis, IN\t2.0\n15101-1430\tAllison Park, PA\t2.0\n19040-2348\tHatboro, PA\t1.846\n14621-1323\tRochester, NY\t2.0\n17314-9172\tDelta, PA\t2.0\n49507-1194\tGrand Rapids, MI\t2.0\n15147-3021\tVerona, PA\t2.0\n15202-3847\tPittsburgh, PA\t2.0\n29579-3185\tMyrtle Beach, SC\t2.0\n23227-2552\tRichmond, VA\t2.0\n46168-1474\tPlainfield, IN\t2.0\n28208-4368\tCharlotte, NC\t2.0\n48420-1710\tClio, MI\t4.0\n19446-2219\tLansdale, PA\t2.0\n14450-3070\tFairport, NY\t2.0\n07649-2330\tOradell, NJ\t2.0\n14621-3142\tRochester, NY\t2.0\n14611-3229\tRochester, NY\t2.0\n48503-3508\tFlint, MI\t2.0\n19454-2473\tNorth Wales, PA\t2.0\n17603-2234\tLancaster, PA\t2.0\n19720-7676\tNew Castle, DE\t2.0\n19002-4320\tAmbler, PA\t2.0\n26426\tSalem, WV\t2.0\n07076-1333\tScotch Plains, NJ\t2.0\n45402-1202\tDayton, OH\t2.0\n37748\tHarriman, TN\t3.0\n44137-1862\tMaple Heights, OH\t2.0\n15211-2145\tPittsburgh, PA\t2.0\n48213-3402\tDetroit, MI\t2.0\n30318-1227\tAtlanta, GA\t2.0\n48504-1221\tFlint, MI\t2.0\n45252-2047\tCincinnati, OH\t2.0\n10524-4235\tGarrison, NY\t2.0\n45002-9666\tCleves, OH\t2.0\n14304-1124\tNiagara Falls, NY\t2.0\n07055-8617\tPassaic, NJ\t2.0\n14620-1341\tRochester, NY\t2.0\n14605-2450\tRochester, NY\t2.0\n48506-3208\tFlint, MI\t2.0\n01462-1107\tLunenburg, MA\t2.0\n14420-2227\tBrockport, NY\t2.0\n49042-1068\tConstantine, MI\t4.0\n13316-5100\tCamden, NY\t2.0\n48439-4837\tGrand Blanc, MI\t2.0\n08505-2256\tBordentown, NJ\t2.0\n45439-3215\tMoraine, OH\t2.0\n28277-3476\tCharlotte, NC\t2.0\n17022-2039\tElizabethtown, PA\t2.0\n13354-4038\tHolland Patent, NY\t2.0\n43232-4825\tColumbus, OH\t2.0\n43235-1942\tColumbus, OH\t2.0\n11763-1626\tMedford, NY\t2.0\n12123-2108\tNassau, NY\t2.0\n15089-3031\tWest Newton, PA\t4.0\n45415-3456\tDayton, OH\t2.0\n19022-1524\tCrum Lynne, PA\t2.0\n12203-2509\tAlbany, NY\t2.0\n14086-1001\tLancaster, NY\t2.0\n02464-1306\tNewton Upper Falls, MA\t2.0\n08055-9717\tMedford, NJ\t2.0\n19438-1804\tHarleysville, PA\t2.0\n27601-1314\tRaleigh, NC\t2.0\n17057-2952\tMiddletown, PA\t4.0\n10306-2143\tStaten Island, NY\t2.0\n46221-4129\tIndianapolis, IN\t2.0\n13440-7551\tRome, NY\t2.0\n48436-9717\tGaines, MI\t2.0\n15090-7912\tWexford, PA\t2.0\n12835-2332\tHadley, NY\t2.0\n28227-9405\tCharlotte, NC\t2.0\n49415-8698\tFruitport, MI\t2.0\n28210-5439\tCharlotte, NC\t2.0\n45410-3044\tDayton, OH\t2.0\n48433-1639\tFlushing, MI\t2.0\n46201-4583\tIndianapolis, IN\t2.0\n45356-4317\tPiqua, OH\t2.0\n03109-4303\tManchester, NH\t2.0\n48420-1440\tClio, MI\t2.0\n19464-5677\tPottstown, PA\t2.0\n46235-1718\tIndianapolis, IN\t2.0\n15147-2611\tVerona, PA\t2.0\n43912\tBridgeport, OH\t2.0\n10589-3209\tSomers, NY\t2.0\n02375-1903\tSouth Easton, MA\t2.0\n49112-9137\tEdwardsburg, MI\t4.0\n48892-9319\tWebberville, MI\t2.0\n29732-8807\tRock Hill, SC\t2.0\n29058-9439\tHeath Springs, SC\t2.0\n18074-9651\tPerkiomenville, PA\t2.0\n29210-5331\tColumbia, SC\t2.0\n30904-6601\tAugusta, GA\t2.0\n15480-1106\tSmock, PA\t2.0\n28205-1431\tCharlotte, NC\t2.0\n45385-9414\tXenia, OH\t4.0\n49777-9105\tPresque Isle, MI\t4.0\n19453-5046\tMont Clare, PA\t2.0\n01463-1646\tPepperell, MA\t2.0\n15666-3706\tMount Pleasant, PA\t4.0\n11730-2634\tEast Islip, NY\t2.0\n21015-1007\tBel Air, MD\t2.0\n21029-1334\tClarksville, MD\t2.0\n27616-9301\tRaleigh, NC\t2.0\n01604-4904\tWorcester, MA\t2.0\n14551\tSodus, NY\t4.0\n60126-2928\tElmhurst, IL\t2.0\n37013-1619\tAntioch, TN\t2.0\n60516-2310\tDowners Grove, IL\t2.0\n55372\tPrior Lake, MN\t2.135\n60605-1901\tChicago, IL\t2.0\n60018\tLeyden, IL\t2.798\n60030-4029\tGrayslake, IL\t2.382\n60523-1402\tOak Brook, IL\t2.0\n37218-2813\tNashville, TN\t2.0\n60707-1117\tElmwood Park, IL\t3.0\n63137\tSaint Louis, MO\t2.5\n60126-3312\tElmhurst, IL\t2.0\n55337-2394\tBurnsville, MN\t2.0\n68102-2817\tOmaha, NE\t2.0\n60133-3138\tHanover Park, IL\t2.0\n37013-1424\tAntioch, TN\t2.0\n60603-5506\tChicago, IL\t2.667\n73162-6843\tOklahoma City, OK\t2.0\n60630-3909\tChicago, IL\t2.0\n54311-7563\tGreen Bay, WI\t2.0\n60123-4916\tElgin, IL\t2.0\n38115\tMemphis, TN\t2.0\n73112-6516\tOklahoma City, OK\t2.0\n37204-2102\tNashville, TN\t2.0\n38122-3751\tMemphis, TN\t2.0\n74119-3402\tTulsa, OK\t2.0\n54457\tNekoosa, WI\t4.0\n37210-2746\tNashville, TN\t2.0\n60060-2207\tMundelein, IL\t2.0\n74146-6804\tTulsa, OK\t2.0\n70508-5182\tLafayette, LA\t2.0\n74066\tSapulpa, OK\t3.0\n60608-5705\tChicago, IL\t2.0\n37204-4584\tNashville, TN\t2.0\n74137-2958\tTulsa, OK\t2.0\n60641-2962\tChicago, IL\t2.0\n68113\tOffutt AFB, NE\t2.0\n53204-3118\tMilwaukee, WI\t2.0\n73134-6001\tOklahoma City, OK\t2.0\n73108-2422\tOklahoma City, OK\t4.0\n73170-4529\tOklahoma City, OK\t2.0\n60148-2104\tLombard, IL\t2.0\n60047-7558\tHawthorn Woods, IL\t2.0\n65803-8133\tSpringfield, MO\t2.0\n60126-1401\tElmhurst, IL\t2.0\n74110-4755\tTulsa, OK\t2.0\n55056-6593\tNorth Branch, MN\t2.0\n68059-4832\tSpringfield, NE\t2.0\n37013-4512\tAntioch, TN\t2.0\n60639-2723\tChicago, IL\t2.0\n56470-3298\tPark Rapids, MN\t2.0\n37115-4010\tMadison, TN\t2.0\n68131-1211\tOmaha, NE\t2.0\n37076-2566\tHermitage, TN\t2.0\n64801\tJoplin, MO\t2.0\n37221-4009\tNashville, TN\t2.0\n55756\tKerrick, MN\t2.0\n97639\tSprague River, OR\t2.0\n95821\tSacramento, CA\t2.0\n93544\tLlano, CA\t2.0\n80021\tBroomfield, CO\t2.099\n80249\tDenver, CO\t2.059\n80220-3414\tDenver, CO\t2.0\n80229-4026\tThornton, CO\t2.0\n84663-9441\tSpringville, UT\t2.0\n80903-3508\tColorado Springs, CO\t2.0\n97918\tVale, OR\t2.152\n83420\tAshton, ID\t2.0\n80003-2610\tArvada, CO\t2.0\n97914-8846\tOntario, OR\t2.0\n80220-1801\tDenver, CO\t2.0\n80524-9243\tFort Collins, CO\t2.0\n84309-9718\tDeweyville, UT\t2.0\n87121-2096\tAlbuquerque, NM\t2.0\n84116-3146\tSalt Lake City, UT\t2.0\n84116-2952\tSalt Lake City, UT\t2.0\n59901-4012\tKalispell, MT\t2.0\n80440-9700\tFairplay, CO\t3.0\n19046\tJenkintown, PA\t2.0\n14613-2208\tRochester, NY\t2.0\n03053-3819\tLondonderry, NH\t4.0\n46216-1051\tIndianapolis, IN\t2.0\n01118-2142\tSpringfield, MA\t2.0\n07430\tMahwah, NJ\t2.563\n48433-1647\tFlushing, MI\t2.0\n06057\tNew Hartford, CT\t2.0\n02150\tChelsea, MA\t2.019\n27560-7071\tMorrisville, NC\t2.0\n11201\tBrooklyn, NY\t2.842\n02703\tAttleboro, MA\t2.897\n06114\tHartford, CT\t2.416\n15221-4829\tPittsburgh, PA\t3.0\n40508-1978\tLexington, KY\t2.0\n48532-4109\tFlint, MI\t2.0\n19102\tPhiladelphia, PA\t2.738\n40216-4569\tLouisville, KY\t2.0\n14607-1634\tRochester, NY\t2.0\n46221-1531\tIndianapolis, IN\t2.0\n28216-7610\tCharlotte, NC\t2.0\n20002\tWashington, DC\t2.0\n14606-2213\tRochester, NY\t2.0\n44127-2012\tCleveland, OH\t2.0\n14094-2746\tLockport, NY\t2.0\n40228\tLouisville, KY\t2.76\n49428-9445\tJenison, MI\t2.0\n43222\tColumbus, OH\t2.103\n49017-9742\tBattle Creek, MI\t2.0\n17402-4931\tYork, PA\t2.0\n48507-1480\tFlint, MI\t2.0\n02115-5523\tBoston, MA\t2.0\n19438-1607\tHarleysville, PA\t2.0\n17540-1761\tLeola, PA\t2.0\n14445-1914\tEast Rochester, NY\t2.0\n14621-2301\tRochester, NY\t2.0\n13206-3022\tSyracuse, NY\t2.0\n02452-5527\tWaltham, MA\t2.0\n17522-1859\tEphrata, PA\t2.0\n48439-7637\tGrand Blanc, MI\t2.0\n02118-3303\tBoston, MA\t2.0\n49503-4729\tGrand Rapids, MI\t2.0\n17602-1907\tLancaster, PA\t2.0\n14608-1962\tRochester, NY\t2.0\n14624-4039\tRochester, NY\t2.0\n43201-2813\tColumbus, OH\t2.0\n16938-9538\tMorris, PA\t2.0\n43219-3034\tColumbus, OH\t2.0\n21784\tSykesville, MD\t3.194\n48529-2217\tBurton, MI\t2.0\n06712-1030\tProspect, CT\t4.0\n23219-3603\tRichmond, VA\t2.0\n14615-3041\tRochester, NY\t2.0\n18411\tClarks Summit, PA\t3.0\n29123-9742\tPelion, SC\t2.0\n11767\tNesconset, NY\t2.0\n45005\tFranklin, OH\t2.447\n15104-1029\tBraddock, PA\t2.0\n02118-2617\tBoston, MA\t2.0\n17331-9758\tHanover, PA\t2.0\n49505-4133\tGrand Rapids, MI\t2.0\n48433-1093\tFlushing, MI\t2.0\n44054-2713\tSheffield Village, OH\t2.0\n17078-1509\tPalmyra, PA\t2.0\n30311-1209\tAtlanta, GA\t2.0\n17022-2415\tElizabethtown, PA\t2.0\n10597\tWaccabuc, NY\t2.0\n17022-1600\tElizabethtown, PA\t2.0\n06511-3969\tNew Haven, CT\t3.0\n48509-2397\tBurton, MI\t2.0\n01742-3442\tConcord, MA\t2.0\n02421-7918\tLexington, MA\t2.0\n29536\tDillon, SC\t2.611\n06825\tFairfield, CT\t2.767\n17402-2831\tYork, PA\t2.0\n49091-9547\tSturgis, MI\t3.0\n20175-4601\tLeesburg, VA\t2.0\n45410-2523\tDayton, OH\t2.0\n46168-8780\tPlainfield, IN\t2.0\n33612\tTampa, FL\t2.5\n11223\tBrooklyn, NY\t2.625\n28210-6965\tCharlotte, NC\t2.0\n48473-8865\tSwartz Creek, MI\t2.0\n41094-8703\tWalton, KY\t2.0\n48504-2587\tFlint, MI\t2.0\n13421-3827\tOneida, NY\t2.0\n44128-3415\tCleveland, OH\t2.0\n08054-1125\tMount Laurel, NJ\t2.0\n03079-4816\tSalem, NH\t2.0\n22030-3906\tFairfax, VA\t4.0\n14605-2423\tRochester, NY\t2.0\n19446-4101\tLansdale, PA\t2.0\n19140\tPhiladelphia, PA\t2.0\n15136-1325\tMc Kees Rocks, PA\t3.875\n37659-5944\tJonesborough, TN\t2.0\n15217-2545\tPittsburgh, PA\t2.0\n48519-1230\tBurton, MI\t2.0\n19462-2479\tPlymouth Meeting, PA\t2.0\n12533-5513\tHopewell Junction, NY\t2.0\n12834\tGreenwich, NY\t2.0\n34607\tSpring Hill, FL\t2.0\n46205-3609\tIndianapolis, IN\t2.0\n49503-3545\tGrand Rapids, MI\t2.0\n19401-2778\tNorristown, PA\t2.0\n27603-4174\tRaleigh, NC\t2.0\n28209-3648\tCharlotte, NC\t2.0\n48532-5101\tFlint, MI\t2.0\n27604-1628\tRaleigh, NC\t2.0\n01452-1519\tHubbardston, MA\t2.0\n29654-9160\tHonea Path, SC\t2.0\n03104-3211\tManchester, NH\t2.0\n04422-3028\tCharleston, ME\t2.0\n47041-8626\tSunman, IN\t2.0\n14607-1246\tRochester, NY\t2.0\n15963\tWindber, PA\t2.0\n27709-0007\tDurham, NC\t4.0\n49503-4423\tGrand Rapids, MI\t2.0\n20176\tLeesburg, VA\t2.267\n49633-9765\tFife Lake, MI\t2.0\n14304-1550\tNiagara Falls, NY\t2.0\n48506-1412\tFlint, MI\t2.0\n17345-9471\tManchester, PA\t2.0\n23224-3428\tRichmond, VA\t2.0\n03047-4300\tGreenfield, NH\t2.0\n07416-1904\tFranklin, NJ\t4.0\n28312-8897\tEastover, NC\t2.0\n45414-4695\tDayton, OH\t2.0\n45152-9679\tMorrow, OH\t2.0\n44120-4845\tCleveland, OH\t2.0\n10459-3055\tBronx, NY\t2.0\n19806\tWilmington, DE\t2.333\n01862-2018\tNorth Billerica, MA\t2.0\n27529-3100\tGarner, NC\t2.0\n29670-1830\tPendleton, SC\t2.0\n21001-3602\tAberdeen, MD\t2.0\n17602-4956\tLancaster, PA\t2.0\n12302-3411\tSchenectady, NY\t4.0\n14131-9796\tRansomville, NY\t2.0\n08886-2629\tStewartsville, NJ\t2.0\n46241-5227\tIndianapolis, IN\t2.0\n43718\tBelmont, OH\t2.0\n19506-8215\tBernville, PA\t2.0\n07601-3929\tHackensack, NJ\t2.0\n29651-6413\tGreer, SC\t2.0\n16415-1252\tFairview, PA\t2.0\n14569-9710\tWarsaw, NY\t4.0\n44021-9501\tBurton, OH\t2.0\n17543-9452\tLititz, PA\t2.0\n45011-2720\tHamilton, OH\t2.0\n02830-1920\tHarrisville, RI\t2.0\n37659-4736\tJonesborough, TN\t2.0\n21146-3920\tSeverna Park, MD\t2.0\n28227-6871\tMint Hill, NC\t2.0\n07470-4820\tWayne, NJ\t2.0\n29841-4685\tNorth Augusta, SC\t2.0\n19601-2841\tReading, PA\t2.0\n12075-3200\tGhent, NY\t2.0\n12020-3330\tBallston Spa, NY\t2.0\n20152-4358\tChantilly, VA\t2.0\n43220-2501\tColumbus, OH\t2.0\n11553-3405\tUniondale, NY\t2.0\n29653-9446\tHodges, SC\t2.0\n46052-9332\tLebanon, IN\t4.0\n14623-1405\tRochester, NY\t2.0\n49503-3254\tGrand Rapids, MI\t2.0\n12306-1019\tSchenectady, NY\t2.0\n30308-3406\tAtlanta, GA\t2.0\n60172-1117\tRoselle, IL\t2.199\n64120\tKansas City, MO\t2.766\n60060-3505\tMundelein, IL\t2.0\n50211-1684\tNorwalk, IA\t2.0\n60193\tSchaumburg, IL\t2.518\n60060-9543\tMundelein, IL\t2.235\n60644-2603\tChicago, IL\t2.0\n60048-1160\tLibertyville, IL\t3.0\n74108-7708\tTulsa, OK\t2.0\n38128-4634\tMemphis, TN\t2.0\n73122-1402\tOklahoma City, OK\t2.0\n54180\tWrightstown, WI\t2.167\n60714-3701\tNiles, IL\t2.0\n60527-2391\tWillowbrook, IL\t2.0\n60137-5812\tGlen Ellyn, IL\t2.0\n60018-1928\tDes Plaines, IL\t4.0\n73108-6205\tOklahoma City, OK\t2.0\n54534\tHurley, WI\t4.0\n63303\tSaint Charles, MO\t2.66\n60527-2202\tWillowbrook, IL\t2.0\n52159-8139\tMonona, IA\t4.0\n73111-5223\tOklahoma City, OK\t2.0\n60123-6060\tElgin, IL\t2.0\n64015\tBlue Springs, MO\t2.661\n60015-2521\tRiverwoods, IL\t2.0\n60827-2623\tRiverdale, IL\t2.0\n60645-1513\tChicago, IL\t4.0\n77033-2119\tHouston, TX\t2.0\n60657-1832\tChicago, IL\t2.0\n56431\tAitkin, MN\t2.5\n53083-4935\tSheboygan, WI\t2.0\n61755\tMackinaw, IL\t2.0\n37209-5004\tNashville, TN\t2.0\n76021-3326\tBedford, TX\t2.0\n50208\tNewton, IA\t2.978\n60561-4382\tDarien, IL\t2.0\n53218-4509\tMilwaukee, WI\t2.0\n68117-1656\tOmaha, NE\t2.0\n37209-2666\tNashville, TN\t2.0\n68117-1329\tOmaha, NE\t2.0\n74137-2240\tTulsa, OK\t2.0\n68147-2481\tBellevue, NE\t2.0\n74104-4842\tTulsa, OK\t2.0\n78230-1012\tSan Antonio, TX\t3.0\n60126-1739\tElmhurst, IL\t2.0\n73169-1708\tOklahoma City, OK\t2.0\n78741-1332\tAustin, TX\t2.0\n60481-9159\tWilmington, IL\t3.0\n37013-4845\tAntioch, TN\t2.0\n61611-4840\tEast Peoria, IL\t2.0\n55992-7258\tZumbrota, MN\t2.333\n73109-2402\tOklahoma City, OK\t2.0\n37210-4135\tNashville, TN\t2.0\n68142-2140\tOmaha, NE\t2.0\n75208-4134\tDallas, TX\t2.0\n60660-1344\tChicago, IL\t2.0\n60148-4933\tLombard, IL\t2.0\n65803-2743\tSpringfield, MO\t2.0\n75229-5707\tDallas, TX\t2.0\n55921-2781\tCaledonia, MN\t2.0\n61554-4372\tPekin, IL\t2.0\n37207-2428\tNashville, TN\t2.0\n38120-2551\tMemphis, TN\t2.0\n60126-2738\tElmhurst, IL\t2.0\n73132-2610\tOklahoma City, OK\t2.0\n56052\tKilkenny, MN\t2.0\n55388-9250\tWatertown, MN\t2.0\n70592-5545\tYoungsville, LA\t2.0\n60148-3323\tLombard, IL\t2.0\n37208-2825\tNashville, TN\t2.0\n97624-9717\tChiloquin, OR\t2.0\n97756-9616\tRedmond, OR\t2.0\n97733-9722\tCrescent, OR\t2.0\n97322-9716\tAlbany, OR\t2.0\n93514-9637\tBishop, CA\t2.0\n95735\tTwin Bridges, CA\t2.5\n97038-8523\tMolalla, OR\t2.0\n99206-3554\tSpokane Valley, WA\t2.0\n99004-9105\tCheney, WA\t2.0\n98003-6004\tFederal Way, WA\t2.0\n84528\tHuntington, UT\t2.092\n87102-3104\tAlbuquerque, NM\t2.0\n84088-6504\tWest Jordan, UT\t2.0\n80231-5001\tDenver, CO\t2.0\n80218-1904\tDenver, CO\t2.0\n80222-6538\tDenver, CO\t2.0\n84401-4114\tOgden, UT\t2.0\n80906-7978\tColorado Springs, CO\t2.0\n80223-1945\tDenver, CO\t2.0\n80470-9543\tPine, CO\t2.0\n80011-8629\tAurora, CO\t2.0\n84655-8183\tSantaquin, UT\t2.0\n83118-9722\tEtna, WY\t4.0\n17522-9361\tEphrata, PA\t2.0\n11590-3794\tWestbury, NY\t2.0\n12468-1506\tPrattsville, NY\t2.0\n46168-9790\tPlainfield, IN\t2.0\n28216-4023\tCharlotte, NC\t2.0\n17364\tThomasville, PA\t2.269\n15211\tPittsburgh, PA\t2.036\n40503\tLexington, KY\t2.033\n28213-7775\tCharlotte, NC\t2.0\n12501-5342\tAmenia, NY\t4.0\n49505-5139\tGrand Rapids, MI\t2.0\n48504-3304\tFlint, MI\t2.0\n10560\tNorth Salem, NY\t2.71\n17404-1733\tYork, PA\t2.0\n27513\tCary, NC\t2.115\n45406-1607\tDayton, OH\t2.0\n23226-2542\tRichmond, VA\t2.0\n29212\tColumbia, SC\t2.867\n23224-2405\tRichmond, VA\t2.0\n48225-1636\tHarper Woods, MI\t2.0\n48420-9184\tClio, MI\t2.0\n29527-7828\tConway, SC\t2.0\n02458\tNewton, MA\t2.98\n14620-2726\tRochester, NY\t2.0\n46268-3606\tIndianapolis, IN\t2.0\n46250-2724\tIndianapolis, IN\t2.0\n13164-9707\tWarners, NY\t2.0\n12197\tWorcester, NY\t2.8\n49503-2624\tGrand Rapids, MI\t2.0\n11096\tInwood, NY\t2.0\n03809-4625\tAlton, NH\t2.0\n04074\tScarborough, ME\t2.0\n48221-2259\tDetroit, MI\t3.0\n19454-2715\tNorth Wales, PA\t2.0\n43214-2634\tColumbus, OH\t2.0\n46746\tHowe, IN\t3.333\n48532-3529\tFlint, MI\t2.0\n23323\tChesapeake, VA\t2.756\n19525-9411\tGilbertsville, PA\t2.0\n47274\tSeymour, IN\t2.75\n45402-2116\tDayton, OH\t2.0\n49203\tJackson, MI\t2.0\n14464-9522\tHamlin, NY\t2.0\n28216-5334\tCharlotte, NC\t2.0\n28206-2754\tCharlotte, NC\t2.0\n14420-9492\tBrockport, NY\t2.0\n15221-4211\tPittsburgh, PA\t2.0\n16504-2936\tErie, PA\t2.0\n29016\tBlythewood, SC\t2.625\n14610-1006\tRochester, NY\t2.0\n28208-6906\tCharlotte, NC\t2.0\n49503-3455\tGrand Rapids, MI\t2.0\n14534-1040\tPittsford, NY\t2.0\n43615-1407\tToledo, OH\t2.0\n12118\tMechanicville, NY\t2.125\n14615-3419\tRochester, NY\t2.0\n12060\tEast Chatham, NY\t2.0\n37408\tChattanooga, TN\t3.25\n19066-1254\tMerion Station, PA\t2.0\n48509-2319\tBurton, MI\t2.0\n45224-1372\tCincinnati, OH\t2.0\n28269-4441\tCharlotte, NC\t2.0\n06108-4202\tEast Hartford, CT\t2.0\n29651-6169\tGreer, SC\t2.0\n01742-3511\tConcord, MA\t2.0\n02130-2627\tJamaica Plain, MA\t2.0\n29303-2006\tSpartanburg, SC\t2.0\n45315-7701\tClayton, OH\t2.0\n47203-9192\tColumbus, IN\t2.0\n01862-1415\tNorth Billerica, MA\t2.0\n48529-1439\tBurton, MI\t2.0\n48224-3830\tDetroit, MI\t3.0\n29032-9304\tCassatt, SC\t2.0\n28227-3346\tCharlotte, NC\t2.0\n17522-1832\tEphrata, PA\t2.0\n48502-1026\tFlint, MI\t2.0\n49503-5430\tGrand Rapids, MI\t2.0\n27408-5816\tGreensboro, NC\t2.0\n28208-4049\tCharlotte, NC\t2.0\n06776-4315\tNew Milford, CT\t4.0\n48507-1304\tFlint, MI\t3.0\n14622-2721\tRochester, NY\t2.0\n46241-3514\tIndianapolis, IN\t2.0\n48507-5522\tFlint, MI\t2.0\n01721-2053\tAshland, MA\t2.0\n19804-1640\tWilmington, DE\t2.0\n46237-2911\tIndianapolis, IN\t2.0\n46214-3952\tIndianapolis, IN\t2.0\n37309\tCalhoun, TN\t3.0\n14621-3004\tRochester, NY\t2.0\n10451-4166\tBronx, NY\t2.0\n11704-6208\tWest Babylon, NY\t2.0\n48234-1932\tDetroit, MI\t2.0\n21740-2380\tHagerstown, MD\t2.0\n17046-8053\tLebanon, PA\t2.0\n15213-3204\tPittsburgh, PA\t2.0\n15216-3125\tPittsburgh, PA\t2.0\n02127-1530\tBoston, MA\t2.0\n16127\tGrove City, PA\t3.216\n11754-3426\tKings Park, NY\t2.0\n11746-5857\tDix Hills, NY\t3.0\n44108-1869\tCleveland, OH\t2.0\n29456-3284\tLadson, SC\t2.0\n22831-2116\tHinton, VA\t4.0\n30035-1128\tDecatur, GA\t3.0\n47272\tSaint Paul, IN\t3.0\n28214-5013\tCharlotte, NC\t2.0\n23228-1338\tHenrico, VA\t2.0\n47362-9047\tNew Castle, IN\t4.0\n45014\tFairfield, OH\t2.0\n11235-1112\tBrooklyn, NY\t2.0\n11418-2612\tRichmond Hill, NY\t2.0\n12210-1423\tAlbany, NY\t2.0\n23225-3938\tRichmond, VA\t2.0\n19438-2823\tHarleysville, PA\t2.0\n24440\tGreenville, VA\t2.75\n46222-1676\tIndianapolis, IN\t2.0\n02860-4403\tPawtucket, RI\t2.0\n12138-4413\tPetersburg, NY\t2.0\n13054-3172\tDurhamville, NY\t2.0\n08060-1161\tWestampton, NJ\t2.0\n48341-3170\tPontiac, MI\t2.0\n49505-5265\tGrand Rapids, MI\t2.0\n45255\tCincinnati, OH\t2.75\n44081-9798\tPerry, OH\t2.0\n49093-8625\tThree Rivers, MI\t2.0\n27405-8611\tGreensboro, NC\t2.0\n14617-4631\tRochester, NY\t2.0\n17701\tWilliamsport, PA\t2.0\n15068-3137\tNew Kensington, PA\t2.0\n29720-6520\tLancaster, SC\t2.0\n11726-1412\tCopiague, NY\t2.0\n47374-9684\tRichmond, IN\t2.0\n49505-4955\tGrand Rapids, MI\t2.0\n08530-2030\tLambertville, NJ\t2.0\n13219-1303\tSyracuse, NY\t2.0\n15204-1441\tPittsburgh, PA\t2.0\n30308-1908\tAtlanta, GA\t2.0\n13502-5325\tUtica, NY\t2.0\n19096-1602\tWynnewood, PA\t2.0\n15801-2409\tDu Bois, PA\t2.0\n07631-4140\tEnglewood, NJ\t2.0\n14613-2145\tRochester, NY\t2.0\n27607-3140\tRaleigh, NC\t2.0\n17331-9447\tHanover, PA\t2.0\n48420-9193\tClio, MI\t4.0\n45302\tAnna, OH\t4.0\n02130-4247\tJamaica Plain, MA\t2.0\n29550-6298\tHartsville, SC\t2.0\n11717-4010\tBrentwood, NY\t2.0\n06468-1921\tMonroe, CT\t2.0\n17401-2915\tYork, PA\t2.0\n55102\tSaint Paul, MN\t2.849\n60608\tChicago, IL\t2.652\n53044\tKohler, WI\t2.0\n73179-7641\tOklahoma City, OK\t2.0\n60618-6609\tChicago, IL\t3.0\n37217-1939\tNashville, TN\t2.0\n68118\tOmaha, NE\t2.006\n37211-3322\tNashville, TN\t2.733\n60619-1822\tChicago, IL\t2.0\n60565\tNaperville, IL\t2.095\n68124-1559\tOmaha, NE\t2.0\n53125-1143\tFontana, WI\t2.0\n55424-1227\tMinneapolis, MN\t2.0\n60051-7241\tMchenry, IL\t2.0\n60123-2738\tElgin, IL\t2.0\n55386-7703\tVictoria, MN\t2.0\n37203-1620\tNashville, TN\t2.0\n53126\tFranksville, WI\t2.923\n73107-6137\tOklahoma City, OK\t2.0\n60619-7230\tChicago, IL\t3.0\n60636-1157\tChicago, IL\t2.0\n37215-2606\tNashville, TN\t2.0\n60602-1610\tChicago, IL\t2.0\n68137-1743\tOmaha, NE\t2.0\n37138-3033\tOld Hickory, TN\t2.0\n60120-3036\tElgin, IL\t2.0\n37203-3956\tNashville, TN\t2.0\n73129-5406\tOklahoma City, OK\t2.0\n37206-4033\tNashville, TN\t2.0\n54405\tAbbotsford, WI\t3.0\n70508-6118\tLafayette, LA\t3.0\n68122-1240\tOmaha, NE\t2.0\n78751\tAustin, TX\t2.0\n68112-2227\tOmaha, NE\t2.0\n60172-2017\tRoselle, IL\t2.0\n37076-2935\tHermitage, TN\t2.0\n36106\tMontgomery, AL\t2.667\n78215\tSan Antonio, TX\t2.5\n60190-1231\tWinfield, IL\t2.0\n73108-7018\tOklahoma City, OK\t2.0\n35242-0312\tBirmingham, AL\t2.0\n73109-6620\tOklahoma City, OK\t2.0\n60010-5109\tBarrington, IL\t2.0\n39042-3259\tBrandon, MS\t2.0\n38305\tJackson, TN\t3.333\n60517-2932\tWoodridge, IL\t2.0\n60649-2310\tChicago, IL\t2.0\n60064-1943\tNorth Chicago, IL\t2.0\n73120-7752\tOklahoma City, OK\t2.0\n55304\tAndover, MN\t2.0\n60641-5133\tChicago, IL\t2.0\n60120-4670\tElgin, IL\t2.0\n61546-8458\tManito, IL\t2.0\n50315-1933\tDes Moines, IA\t2.0\n77057-5804\tHouston, TX\t2.0\n52340\tTiffin, IA\t2.333\n37221-4214\tNashville, TN\t2.0\n35754-3807\tLaceys Spring, AL\t2.0\n35244-1087\tHoover, AL\t2.0\n60060-1441\tMundelein, IL\t2.0\n68102-1820\tOmaha, NE\t2.0\n68107-2008\tOmaha, NE\t2.0\n60123-1136\tElgin, IL\t2.0\n60441-3405\tLockport, IL\t2.0\n35045-3366\tClanton, AL\t2.0\n77076-2942\tHouston, TX\t3.0\n74105-4544\tTulsa, OK\t2.0\n60048-2603\tLibertyville, IL\t2.0\n60148-6416\tLombard, IL\t2.0\n53027-1850\tHartford, WI\t4.0\n36608-9117\tMobile, AL\t2.0\n56435-2052\tBackus, MN\t2.0\n68803\tGrand Island, NE\t3.0\n60609-6165\tChicago, IL\t2.0\n53536\tEvansville, WI\t3.0\n74108-2523\tTulsa, OK\t2.0\n68107-2516\tOmaha, NE\t2.0\n55312-6211\tBrownton, MN\t2.0\n70808-4520\tBaton Rouge, LA\t2.0\n60181-1226\tVilla Park, IL\t2.0\n78223-2570\tSan Antonio, TX\t2.0\n52601\tBurlington, IA\t2.0\n35473-2503\tNorthport, AL\t2.0\n60002-2221\tAntioch, IL\t2.0\n97413\tBlue River, OR\t2.448\n89444\tWellington, NV\t4.0\n97217\tPortland, OR\t2.404\n97218-2934\tPortland, OR\t2.0\n99212\tSpokane, WA\t2.676\n98370\tPoulsbo, WA\t2.5\n92314-9233\tBig Bear City, CA\t3.0\n97488-9707\tVida, OR\t2.0\n83864\tSandpoint, ID\t2.0\n89503-3145\tReno, NV\t2.0\n97750-9500\tMitchell, OR\t2.0\n97741-1629\tMadras, OR\t2.0\n83843-7801\tMoscow, ID\t2.0\n98115-4307\tSeattle, WA\t2.0\n80920\tColorado Springs, CO\t2.08\n84119-2008\tWest Valley City, UT\t2.0\n84022\tDugway, UT\t2.4\n80203-2746\tDenver, CO\t2.0\n80204-2209\tDenver, CO\t4.0\n80204-1952\tDenver, CO\t2.0\n84404-1229\tOgden, UT\t2.0\n84755\tMount Carmel, UT\t2.444\n79936\tEl Paso, TX\t2.0\n80246-1154\tDenver, CO\t2.0\n80207-2101\tDenver, CO\t2.0\n88414\tCapulin, NM\t2.0\n80222-4913\tDenver, CO\t2.0\n84084-4010\tWest Jordan, UT\t2.0\n80459\tKremmling, CO\t2.0\n79936-2054\tEl Paso, TX\t2.0\n87732\tMora, NM\t4.0\n84790-6926\tSaint George, UT\t3.0\n48213\tDetroit, MI\t2.825\n48423-1906\tDavison, MI\t2.0\n49507-2007\tGrand Rapids, MI\t2.0\n48462-8618\tOrtonville, MI\t2.0\n14526\tPenfield, NY\t2.0\n20004\tWashington, DC\t2.824\n46163\tNew Palestine, IN\t2.0\n45414-5415\tDayton, OH\t2.0\n14057\tEden, NY\t2.963\n20706-2680\tLanham, MD\t3.0\n48463\tOtisville, MI\t2.0\n01720-3305\tActon, MA\t2.0\n17331-3705\tHanover, PA\t2.0\n04072\tSaco, ME\t2.091\n45064-9482\tSomerville, OH\t2.0\n44125-1957\tCleveland, OH\t3.0\n27604-1018\tRaleigh, NC\t2.0\n45417-2135\tDayton, OH\t2.0\n28078-6906\tHuntersville, NC\t2.0\n11701-1701\tAmityville, NY\t2.0\n48507-3542\tFlint, MI\t2.0\n29649-9137\tGreenwood, SC\t2.0\n06840\tNew Canaan, CT\t2.345\n28105-0789\tMatthews, NC\t2.0\n48433-2124\tFlushing, MI\t2.0\n48503-4146\tFlint, MI\t2.0\n48507-4736\tFlint, MI\t2.0\n37601-1323\tJohnson City, TN\t2.0\n11742\tHoltsville, NY\t2.329\n01821-6314\tBillerica, MA\t2.0\n29803-4150\tAiken, SC\t2.0\n48458-2509\tMount Morris, MI\t4.0\n48503-4733\tFlint, MI\t2.0\n49503-2511\tGrand Rapids, MI\t2.0\n48420-1837\tClio, MI\t2.0\n29102-6859\tManning, SC\t2.0\n48423-9558\tDavison, MI\t2.0\n28202-2905\tCharlotte, NC\t2.0\n48822\tEagle, MI\t2.722\n14543-9756\tRush, NY\t2.0\n14621-2634\tRochester, NY\t2.0\n14217-1129\tBuffalo, NY\t4.0\n02478-3718\tBelmont, MA\t2.0\n46221-9615\tIndianapolis, IN\t2.0\n48532-5138\tFlint, MI\t2.0\n11735-1802\tFarmingdale, NY\t4.0\n02176-2504\tMelrose, MA\t2.0\n28208-3857\tCharlotte, NC\t2.0\n29365-9677\tLyman, SC\t2.0\n15219-1102\tPittsburgh, PA\t2.0\n19462-2737\tPlymouth Meeting, PA\t2.0\n17402-2624\tYork, PA\t2.0\n14618-2749\tRochester, NY\t2.0\n28226-8527\tCharlotte, NC\t2.0\n10710-1828\tYonkers, NY\t2.0\n02740\tNew Bedford, MA\t2.143\n03032\tAuburn, NH\t2.0\n44131-3309\tIndependence, OH\t2.0\n48506-2245\tFlint, MI\t2.0\n49460-9701\tWest Olive, MI\t2.0\n48040\tMarysville, MI\t2.0\n28207-2228\tCharlotte, NC\t2.0\n48439-7965\tGrand Blanc, MI\t2.0\n43015-8895\tDelaware, OH\t2.0\n48093-3464\tWarren, MI\t2.0\n19702-2378\tNewark, DE\t2.0\n45417-3971\tDayton, OH\t2.0\n14467-9200\tHenrietta, NY\t2.0\n48507-2259\tFlint, MI\t2.0\n49503-2002\tGrand Rapids, MI\t2.0\n28625\tStatesville, NC\t2.333\n23225-6100\tRichmond, VA\t2.0\n06706-1245\tWaterbury, CT\t2.0\n02118-2220\tBoston, MA\t2.0\n06238-1227\tCoventry, CT\t2.0\n20781-1211\tHyattsville, MD\t2.0\n48207-4208\tDetroit, MI\t2.0\n37601-1346\tJohnson City, TN\t2.0\n28215-4104\tCharlotte, NC\t2.0\n14472-9381\tHoneoye Falls, NY\t2.0\n44681-9561\tSugarcreek, OH\t4.0\n48420-9108\tClio, MI\t2.0\n43054-9797\tNew Albany, OH\t2.0\n37840-2019\tOliver Springs, TN\t4.0\n30236-6556\tJonesboro, GA\t4.0\n18964-1646\tSouderton, PA\t2.0\n45406-1346\tDayton, OH\t2.0\n14467-9746\tHenrietta, NY\t4.0\n02119-2902\tRoxbury, MA\t2.0\n14621-3926\tRochester, NY\t2.0\n29445-3457\tGoose Creek, SC\t2.0\n48504-6927\tFlint, MI\t2.0\n32223\tJacksonville, FL\t3.0\n28209-1802\tCharlotte, NC\t2.0\n40219-2780\tLouisville, KY\t2.0\n27401-1106\tGreensboro, NC\t2.0\n26059\tTriadelphia, WV\t2.533\n06824-7302\tFairfield, CT\t2.0\n10472-1501\tBronx, NY\t2.0\n11236-1829\tBrooklyn, NY\t2.0\n19090-4520\tWillow Grove, PA\t2.0\n13440-5746\tRome, NY\t2.0\n12302-6303\tSchenectady, NY\t4.0\n17046-3802\tLebanon, PA\t2.0\n14605-1157\tRochester, NY\t2.0\n10509-4630\tBrewster, NY\t3.0\n22485-5109\tKing George, VA\t4.0\n29180-8548\tWinnsboro, SC\t2.0\n29526-9319\tConway, SC\t2.0\n40067\tSimpsonville, KY\t3.0\n22150-4231\tSpringfield, VA\t2.0\n43342-9340\tProspect, OH\t4.0\n29935\tPort Royal, SC\t2.0\n17055-6901\tMechanicsburg, PA\t2.0\n27606-1936\tRaleigh, NC\t2.0\n14428-9549\tChurchville, NY\t2.0\n19444-2417\tLafayette Hill, PA\t2.0\n29334-9731\tDuncan, SC\t2.0\n11953-2511\tMiddle Island, NY\t2.0\n21077\tHarmans, MD\t3.0\n43211-2569\tColumbus, OH\t4.0\n14609-6237\tRochester, NY\t2.0\n11741-4957\tHolbrook, NY\t2.0\n44046-9784\tHuntsburg, OH\t4.0\n14206-2119\tBuffalo, NY\t2.0\n08873-1745\tSomerset, NJ\t2.0\n17344-1502\tMc Sherrystown, PA\t2.0\n14450-2800\tFairport, NY\t2.0\n17603-5338\tLancaster, PA\t2.0\n08106-1302\tAudubon, NJ\t4.0\n17545-1916\tManheim, PA\t2.0\n16038\tHarrisville, PA\t3.4\n01603-1234\tWorcester, MA\t2.0\n11432-1815\tJamaica, NY\t2.0\n03467-4733\tWestmoreland, NH\t2.0\n29172-2908\tWest Columbia, SC\t2.0\n23231-2010\tHenrico, VA\t2.0\n19426-4434\tCollegeville, PA\t2.0\n13021-8521\tAuburn, NY\t4.0\n45601-8439\tChillicothe, OH\t4.0\n06422-2101\tDurham, CT\t3.75\n47904\tLafayette, IN\t2.0\n41015-2027\tTaylor Mill, KY\t2.0\n10924-2022\tGoshen, NY\t2.0\n17028\tGrantville, PA\t2.333\n11901-1906\tRiverhead, NY\t2.0\n23321-1708\tChesapeake, VA\t2.0\n02767-1019\tRaynham, MA\t2.0\n27539-6345\tApex, NC\t2.0\n19006-6007\tHuntingdon Valley, PA\t2.0\n48038-2011\tClinton Township, MI\t4.0\n08054-1123\tMount Laurel, NJ\t2.0\n12572-1321\tRhinebeck, NY\t2.0\n16947-9629\tTroy, PA\t4.0\n08109-4419\tPennsauken, NJ\t2.0\n45409-2603\tDayton, OH\t2.0\n29678-5832\tSeneca, SC\t2.0\n37210\tNashville, TN\t2.651\n60087\tWaukegan, IL\t2.455\n60561-4300\tDarien, IL\t2.0\n68102-3002\tOmaha, NE\t2.0\n60463\tPalos Heights, IL\t2.0\n73127-2101\tOklahoma City, OK\t2.0\n60068\tPark Ridge, IL\t2.585\n73107-6851\tOklahoma City, OK\t2.0\n37217-3313\tNashville, TN\t2.0\n55057-5327\tNorthfield, MN\t2.0\n60120-7931\tElgin, IL\t2.0\n50271\tWilliams, IA\t3.0\n60515-5117\tDowners Grove, IL\t2.0\n60041-9607\tIngleside, IL\t2.4\n60415-2156\tChicago Ridge, IL\t2.0\n75247-4725\tDallas, TX\t2.0\n73106-3227\tOklahoma City, OK\t2.0\n73107-1827\tOklahoma City, OK\t2.0\n73159-6314\tOklahoma City, OK\t2.0\n68104-4631\tOmaha, NE\t2.0\n68107-3121\tOmaha, NE\t2.0\n78717\tAustin, TX\t2.0\n77336\tHuffman, TX\t2.0\n47951\tKentland, IN\t4.0\n61115\tMachesney Park, IL\t2.875\n73099-6388\tYukon, OK\t2.0\n54115-3156\tDe Pere, WI\t2.0\n60185-1895\tWest Chicago, IL\t2.0\n56544\tFrazee, MN\t2.0\n36610\tMobile, AL\t2.5\n60515-2881\tDowners Grove, IL\t2.0\n35603\tDecatur, AL\t2.333\n60073-3224\tRound Lake, IL\t2.0\n68046-2012\tPapillion, NE\t2.0\n55454-1418\tMinneapolis, MN\t3.0\n60187-3052\tWheaton, IL\t2.0\n72350\tJoiner, AR\t2.5\n74110-4828\tTulsa, OK\t2.0\n61554-3762\tPekin, IL\t2.0\n53108-9742\tCaledonia, WI\t3.0\n37080-8650\tJoelton, TN\t2.0\n60644-3638\tChicago, IL\t2.0\n60185-1636\tWest Chicago, IL\t2.0\n60120-5527\tElgin, IL\t2.0\n60148-5699\tLombard, IL\t2.0\n53204-1036\tMilwaukee, WI\t2.0\n60521-2470\tHinsdale, IL\t2.0\n73132-6901\tOklahoma City, OK\t2.0\n52060-9040\tMaquoketa, IA\t2.0\n38053\tMillington, TN\t2.0\n53511-9542\tBeloit, WI\t2.0\n50322-1039\tUrbandale, IA\t2.0\n37115-3060\tMadison, TN\t2.0\n60517-1924\tWoodridge, IL\t2.0\n73084-8828\tSpencer, OK\t2.0\n60622-5518\tChicago, IL\t3.0\n74133-4133\tTulsa, OK\t2.0\n38106-7900\tMemphis, TN\t2.0\n78217-2620\tSan Antonio, TX\t2.0\n50322-7933\tUrbandale, IA\t2.0\n35135-1001\tRiverside, AL\t3.0\n74047\tMounds, OK\t2.0\n56301-3712\tSaint Cloud, MN\t2.0\n60120-2214\tElgin, IL\t2.0\n35043-7444\tChelsea, AL\t2.0\n36110\tMontgomery, AL\t2.0\n60188-9409\tCarol Stream, IL\t2.0\n35111-3551\tMc Calla, AL\t2.0\n73106-6612\tOklahoma City, OK\t2.0\n70802-5722\tBaton Rouge, LA\t2.0\n68046-3850\tPapillion, NE\t2.0\n73116-6401\tNichols Hills, OK\t2.0\n98055\tRenton, WA\t2.75\n97756-8869\tRedmond, OR\t2.0\n98144-3134\tSeattle, WA\t2.5\n97828-4044\tEnterprise, OR\t2.0\n96161-0348\tTruckee, CA\t2.2\n98052-9670\tRedmond, WA\t2.0\n"
+          },
+          {
+            "type": "HTML",
+            "data": "<div class=\"result-alert alert-warning\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>Output is truncated</strong> to 1000 rows. Learn more about <strong>zeppelin.spark.maxResult</strong></div>\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2101",
+              "$$hashKey": "object:15492"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2101",
+              "$$hashKey": "object:15493"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2101",
+              "$$hashKey": "object:15494"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2101",
+              "$$hashKey": "object:15495"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2101",
+              "$$hashKey": "object:15496"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2102",
+              "$$hashKey": "object:15497"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2102",
+              "$$hashKey": "object:15498"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2102",
+              "$$hashKey": "object:15499"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2102",
+              "$$hashKey": "object:15500"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2102",
+              "$$hashKey": "object:15501"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2109",
+              "$$hashKey": "object:15502"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2109",
+              "$$hashKey": "object:15503"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2109",
+              "$$hashKey": "object:15504"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2109",
+              "$$hashKey": "object:15505"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2109",
+              "$$hashKey": "object:15506"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2110",
+              "$$hashKey": "object:15507"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2110",
+              "$$hashKey": "object:15508"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2110",
+              "$$hashKey": "object:15509"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2110",
+              "$$hashKey": "object:15510"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2110",
+              "$$hashKey": "object:15511"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2111",
+              "$$hashKey": "object:15512"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2111",
+              "$$hashKey": "object:15513"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2111",
+              "$$hashKey": "object:15514"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2111",
+              "$$hashKey": "object:15515"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2111",
+              "$$hashKey": "object:15516"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1643046165500_1412346240",
+      "id": "paragraph_1643011878201_1421985227",
+      "dateCreated": "2022-01-24T18:42:45+0100",
+      "dateStarted": "2022-01-24T23:10:36+0100",
+      "dateFinished": "2022-01-24T23:10:45+0100",
+      "status": "FINISHED",
+      "$$hashKey": "object:511"
+    },
+    {
+      "text": "%md\n### 3. Średni dystans (w milach) wypadków, które wydarzyły się w pobliżu skrzyżowania lub stacji, przy wietrze o prędkości co najmniej 45 mil na godzinę, z podzialem na stany i miasta.",
+      "user": "wk",
+      "dateUpdated": "2022-01-24T23:10:45+0100",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h3>3. Średni dystans (w milach) wypadków, które wydarzyły się w pobliżu skrzyżowania lub stacji, przy wietrze o prędkości co najmniej 45 mil na godzinę, z podzialem na stany i miasta.</h3>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1643046165500_2112852124",
+      "id": "paragraph_1643019051737_1360763973",
+      "dateCreated": "2022-01-24T18:42:45+0100",
+      "dateStarted": "2022-01-24T23:10:45+0100",
+      "dateFinished": "2022-01-24T23:10:45+0100",
+      "status": "FINISHED",
+      "$$hashKey": "object:512"
+    },
+    {
+      "text": "%sql\nSELECT locations.State as State, locations.City as City, ROUND(AVG(accidents.distance / accidents.number_of_accidents), 3) as Average_distance_miles FROM delta.`/tmp/delta-f_accident` accidents JOIN delta.`/tmp/delta-w_location` locations ON accidents.location_id=locations.id JOIN delta.`/tmp/delta-w_wind` wind ON accidents.wind_id=wind.wind_id WHERE (accidents.crossing = true OR accidents.station = true) AND wind.wind_min >= 45 GROUP BY State, City ORDER BY State, City ASC;",
+      "user": "wk",
+      "dateUpdated": "2022-01-24T23:10:45+0100",
+      "progress": 11,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "State0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0,
+                          "direction": "asc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "City1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "Average_distance_miles2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "State": "string",
+                      "City": "string",
+                      "Average_distance_miles": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "State",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "City",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "State\tCity\tAverage_distance_miles\nAZ\tApache Junction\t0.0\nAZ\tGilbert\t0.09\nAZ\tGold Canyon\t0.581\nAZ\tMesa\t0.041\nAZ\tQueen Creek\t0.039\nAZ\tSan Tan Valley\t0.022\nAZ\tScottsdale\t0.37\nCA\tWillows\t0.0\nCO\tArvada\t0.188\nCO\tBroomfield\t0.0\nCO\tDenver\t0.037\nCO\tGolden\t0.143\nCO\tLakewood\t0.0\nCO\tMorrison\t0.0\nCO\tNorthglenn\t0.0\nCO\tThornton\t0.0\nCO\tWestminster\t0.0\nCO\tWheat Ridge\t0.0\nWA\tSeattle\t0.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2116",
+              "$$hashKey": "object:16532"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2116",
+              "$$hashKey": "object:16533"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2116",
+              "$$hashKey": "object:16534"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2116",
+              "$$hashKey": "object:16535"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2116",
+              "$$hashKey": "object:16536"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2117",
+              "$$hashKey": "object:16537"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2117",
+              "$$hashKey": "object:16538"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2117",
+              "$$hashKey": "object:16539"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2117",
+              "$$hashKey": "object:16540"
+            },
+            {
+              "jobUrl": "http://localhost:4040/jobs/job?id=2117",
+              "$$hashKey": "object:16541"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1643046165500_177664437",
+      "id": "paragraph_1643012724162_1963916824",
+      "dateCreated": "2022-01-24T18:42:45+0100",
+      "dateStarted": "2022-01-24T23:10:45+0100",
+      "dateFinished": "2022-01-24T23:10:48+0100",
+      "status": "FINISHED",
+      "$$hashKey": "object:513"
+    },
+    {
+      "text": "%sql\n",
+      "user": "wk",
+      "dateUpdated": "2022-01-24T23:10:48+0100",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1643062042745_744373073",
+      "id": "paragraph_1643062042745_744373073",
+      "dateCreated": "2022-01-24T23:07:22+0100",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:8764",
+      "dateFinished": "2022-01-24T23:10:48+0100",
+      "dateStarted": "2022-01-24T23:10:48+0100",
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      }
+    }
+  ],
+  "name": "projekt2_analizy",
+  "id": "2GTP6NCTN",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/projekt2_analizy"
+}
